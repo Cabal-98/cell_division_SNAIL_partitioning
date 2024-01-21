@@ -68,13 +68,13 @@ def partition(a,a_noise,p,var):
         r = np.random.normal(p,var,1) #Fluttuazione dovuta alla partizione 
     b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
     c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
-    if b<0 or c<0:
-        if b<0:
-            c=c-b
-            b=0
+    if b<=0 or c<=0:
+        if b<=0:
+            c=c-b-1
+            b=1
         else:
-            b=b-c
-            c=0
+            b=b-c-1
+            c=1
     #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
     return b,c
 
