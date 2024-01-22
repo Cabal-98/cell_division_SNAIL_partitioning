@@ -4,9 +4,6 @@ from cell_noise_FUNZIONI import *
 
 def main(ncells,tmax,nprints):
     #CELLULA
-    
-    
-    
     cells = defaultdict(list)
     #Stato: SNAIL=0, mu200=1, mZ=2, Z=3, tnext=4, t0=5 dove t0 è il tempo di ultima divisione e tnext il tempo della prossima
 
@@ -118,5 +115,12 @@ if __name__ == "__main__":
     ncells = 2
     tmax = 100
     nprints = 10
+
+    if __name__ == "__main__":
+    ncells = 2
+    tmax = 100
+    nprints = 10
+    ncells, tmax, nprints = sys.argv[1:]
+    print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
     main(ncells,tmax,nprints)
     
