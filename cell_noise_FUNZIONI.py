@@ -1,7 +1,7 @@
 from cell_noise_LIBRERIE import *
 from cell_noise_COSTANTI import *
 
-
+#definisce la modalità di generazione delle cellule iniziali
 def start_status(s): 
     generation_mean_0=0
     if s==0: # EPITELIALE
@@ -41,7 +41,7 @@ def Yi(gamma,mu,mu0,n_sum):
         output = output + math.comb(n_sum,i)*gamma[i]*i*M(mu,mu0,i,n_sum)
     return output
 
-#Reset contenuto Vettori
+#Reset contenuto Vettori, non credo siano utilizzate dopo alcune modifiche
 def inizializza(a):
     a[0]=a[n_t_max-1]
     #a[1:n_t_max]*=0
@@ -53,7 +53,7 @@ def azzera(a):
 
 
 #FUNZIONI DELL'EVOLUZIONE DELLA POPOLAZIONE
-#Generazione Lognormale SNAIL
+#Generazione Lognormale per generare un valore di SNAIL
 def SNAILgen(generation_mean):
     #print(generation_mean)
     sigma = np.sqrt(np.log(2))
@@ -61,7 +61,7 @@ def SNAILgen(generation_mean):
     a = np.random.lognormal(mu,sigma,1)
     return a[0]
 
-#Partizione
+#Partizione di SNAIL tra le due cellule figlie
 def partition(a,a_noise,p,var):
     r=2
     while r<0 or r>1: 
@@ -78,7 +78,7 @@ def partition(a,a_noise,p,var):
     #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
     return b,c
 
-#Generazione pre-divisione - GAUSSIANA PER ORA
+#Duplicazione SNAIL pre-divisione + rumore di partizione
 def duplicate(a,p,var):
     flag = 0
     b = 0
@@ -114,6 +114,7 @@ def printcolumn(vector,name):
         print(vector[i])
     print("\n")
 
+#Genero il tempo della prossima divisione
 #Pensavo di assumere ΔT=1 corrispondente a 10 minuti, così da avere un dt pari a 1 minuto e un rate di una divisione ogni Δt=108
 def division_t():
     rate1 = 18*timescale
@@ -125,7 +126,8 @@ def division_t():
     #a=np.random.gamma(shape=4, scale=rate_tot)
     a=np.random.gamma(shape=4, scale=rate1/4)
     return a
- 
+
+#verifico il primo/prossimo tempo di divisione
 def checktimes(dizionario,t):
     times = np.empty(len(dizionario.keys()))
     for i in range(len(dizionario.keys())):
@@ -136,6 +138,7 @@ def checktimes(dizionario,t):
     #times.clear() boh non funziona
     return t,j
 
+#conto il numero di cellule in uno stato rispetto ad un altro
 def count_phenotype(dizionario):
     pheno=np.zeros(3)
     #Idea di registrare tutti i fenotipi di ogni cellula
@@ -149,6 +152,7 @@ def count_phenotype(dizionario):
             pheno[1]+=1     
     return pheno
 
+#evoluzione temporale del sistema
 def simulazione(parameters,t):
     S=parameters[0]
     mu200=parameters[1]
@@ -186,6 +190,7 @@ def simulazione(parameters,t):
     parameters[3] = Z
     return parameters
 
+#produco la configurazione iniziale di cellule
 def cellgen(cells,ncells,generation_mean):
     
     #Configurazione iniziale degli stati
