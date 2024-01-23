@@ -152,6 +152,10 @@ def count_phenotype(dizionario):
             pheno[1]+=1     
     return pheno
 
+def ran_remove(cells):
+    r_index = rnd.randint(0,len(cells.keys()))
+    del cells[f"cell{r_index}"]
+
 #evoluzione temporale del sistema
 def simulazione(parameters,t):
     S=parameters[0]
