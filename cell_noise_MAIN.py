@@ -65,6 +65,8 @@ def main(ncells,max_population,tmax,nprints):
                     cell2[5] = t_check
                     cells[f"cell{j}"] = np.copy(cell1)
                     cells[f"cell{i}"] = np.copy(cell2)
+                    if len(cells.keys()) > max_population:
+                        ran_remove(cells)
                     t_check,j=checktimes(cells,t)
                     i+=1
                 if t%tprint_width == 0:
@@ -75,8 +77,6 @@ def main(ncells,max_population,tmax,nprints):
                     epi_frac.append(t_fractions[0])
                     hyb_frac.append(t_fractions[1])
                     mes_frac.append(t_fractions[2])
-                while len(cells.keys()) < max_population:
-                    ran_remove(cells)
                 t+=tstep
                             
             for w in range(len(cells.keys())):
