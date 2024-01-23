@@ -2,7 +2,7 @@ from cell_noise_LIBRERIE import *
 from cell_noise_COSTANTI import *
 from cell_noise_FUNZIONI import *
 
-def main(ncells,tmax,nprints):
+def main(ncells,max_population,tmax,nprints):
     #CELLULA
     cells = defaultdict(list)
     #Stato: SNAIL=0, mu200=1, mZ=2, Z=3, tnext=4, t0=5 dove t0 è il tempo di ultima divisione e tnext il tempo della prossima
@@ -13,20 +13,17 @@ def main(ncells,tmax,nprints):
 
     t_phenotypes = np.empty(3)
     t_fractions  = np.empty(3)
-    #epi_n = []
     epi_frac = []
-    #hyb_n = []
     hyb_frac = []
-    #mes_n = []
     mes_frac = []
     
     
 
     t = 0
-    tstep = 1
     #Parametri per stampa periodica
     t_check = 0
     tprint_width = int(tmax/nprints)
+    tstep = tprint_width
     tprint = []
     while t_check <= tmax:
         tprint.append(t_check)
@@ -78,6 +75,8 @@ def main(ncells,tmax,nprints):
                     epi_frac.append(t_fractions[0])
                     hyb_frac.append(t_fractions[1])
                     mes_frac.append(t_fractions[2])
+                while len(cells.keys()) < max_population:
+                    ran_remove(cells)
                 t+=tstep
                             
             for w in range(len(cells.keys())):
@@ -117,10 +116,7 @@ if __name__ == "__main__":
     nprints = 10
 
     if __name__ == "__main__":
-    ncells = 2
-    tmax = 100
-    nprints = 10
-    ncells, tmax, nprints = sys.argv[1:]
+    ncells, max_population, tmax, nprints = sys.argv[1:]
     print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
-    main(ncells,tmax,nprints)
+    main(ncells,max_population,tmax,nprints)
     
