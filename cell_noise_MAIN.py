@@ -125,13 +125,10 @@ def main(ncells,max_population,tmax,nprints):
         plt.legend()
         plt.savefig("./output/plot.png",dpi=1200)
 
-if __name__ == "__main__":
-    ncells = 2
-    tmax = 100
-    nprints = 10
 
-    if __name__ == "__main__":
-        ncells, max_population, tmax, nprints = sys.argv[1:]
-        print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
-        main(ncells,max_population,tmax,nprints)
+
+if __name__ == "__main__":
+    ncells, max_population, tmax, nprints = sys.argv[1:]
+    print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
+    main(ncells,max_population,tmax,nprints)
     
