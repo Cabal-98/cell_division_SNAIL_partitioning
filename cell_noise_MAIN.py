@@ -95,8 +95,10 @@ def main(ncells,max_population,tmax,nprints):
         epi_frac.append(t_phenotypes[0]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))
         hyb_frac.append(t_phenotypes[1]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))
         mes_frac.append(t_phenotypes[2]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))
-                                        
-        with open("./output/fractions.txt","w") as f:
+        
+        label = "_" + str(p).replace(".","") + "_" + str(var).replace(".","")
+        
+        with open("./output/fractions" + label + ".txt","w") as f:
            f.write("p = %f - var = %f \n" %(p,var))
            f.write("Epiteliali \t Ibride \t Mesenchimali \n")
            for i in range(len(epi_frac)):
@@ -110,7 +112,6 @@ def main(ncells,max_population,tmax,nprints):
         mes_frac.clear()
         cells.clear()
 
-        label = "_" + str(p).replace(".","") + "_" + str(var).replace(".","")
         save_object(barslenght, "./output/barslenght" + label + ".pkl" )
         save_object(epi_frac, "./output/epi_frac.pkl" + label + ".pkl")
         save_object(hyb_frac, "./output/hyb_frac.pkl" + label + ".pkl")
