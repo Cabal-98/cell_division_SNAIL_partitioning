@@ -113,11 +113,11 @@ def main(ncells,max_population,tmax,nprints):
         mes_frac.clear()
         cells.clear()
 
-        pino = "_" + str(p).replace(".","") + "_" + str(var).replace(".","")
-        save_object(barslenght, "barslenght" + pino + ".pkl" )
-        save_object(epi_frac, "epi_frac.pkl" + pino + ".pkl")
-        save_object(hyb_frac, "hyb_frac.pkl" + pino + ".pkl")
-        save_object(mes_frac, "mes_frac.pkl" + pino + ".pkl")
+        label = "_" + str(p).replace(".","") + "_" + str(var).replace(".","")
+        save_object(barslenght, "barslenght" + label + ".pkl" )
+        save_object(epi_frac, "epi_frac.pkl" + label + ".pkl")
+        save_object(hyb_frac, "hyb_frac.pkl" + label + ".pkl")
+        save_object(mes_frac, "mes_frac.pkl" + label + ".pkl")
             
         #plt.figure("histogram")
         #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
