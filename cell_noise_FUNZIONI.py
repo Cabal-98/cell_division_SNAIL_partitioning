@@ -121,14 +121,10 @@ def division_t():
     return a
 
 #verifico il primo/prossimo tempo di divisione
-def checktimes(dizionario,t):
-    times = np.empty(len(dizionario.keys()))
-    for i in range(len(dizionario.keys())):
-            times[i]=np.copy(dizionario[f"cell{i+1}"][4])
-    t = min(times)
-    ind = np.where(times==t)[0]+1
-    j = ind[0]
-    #times.clear() boh non funziona
+def checktimes(dizionario):
+    key, value = min(dizionario.items(), key=lambda x: x[1][4])
+    t=value[4]
+    j = int(key[4:])
     return t,j
 
 #conto il numero di cellule in uno stato rispetto ad un altro
