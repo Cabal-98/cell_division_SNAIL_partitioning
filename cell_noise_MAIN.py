@@ -49,7 +49,7 @@ def main(ncells,max_population,tmax,nprints):
             t=0
             i=ncells+1
             while t < tmax:
-                t_check,j=checktimes(cells,t)
+                t_check,j=checktimes(cells)
                 while t_check < t:
                     #print(t_check, t)
                     cell1 = np.copy(simulazione(cells[f"cell{j}"],t_check))
@@ -69,7 +69,7 @@ def main(ncells,max_population,tmax,nprints):
                         i=ran_remove(cells)
                     else:
                         i+=1
-                    t_check,j=checktimes(cells,t)
+                    t_check,j=checktimes(cells)
                 if t%tprint_width == 0:
                     for i in range(len(cells.keys())):
                         cells[f"cell{i+1}"]=np.copy(simulazione(cells[f"cell{i+1}"],t))
