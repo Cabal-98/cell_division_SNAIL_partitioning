@@ -18,6 +18,14 @@ def start_status(s):
         print("Errore nell'inizializzazione dello stato")
     return generation_mean_0,s
 
+def save_object(obj, filename):
+    with open(filename, 'wb') as outp:  # Overwrites any existing file.
+        pickle.dump(obj, outp, pickle.HIGHEST_PROTOCOL)
+
+def read_object(filename):
+    with open(filename, 'rb') as file:
+        data = pickle.load(file)
+    return data
 
 #FUNZIONI DELL'EVOLUZIONE TEMPORALE
 def H(a,lam,a0,n):
