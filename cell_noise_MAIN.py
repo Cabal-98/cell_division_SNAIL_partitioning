@@ -29,7 +29,7 @@ def main(ncells,max_population,tmax,nprints):
         offset = np.arange(len(tprint))
         #printd(cells)
         #print("\n")
-
+    print(tprint_width)
     #TEST GRAFICO DEL SISTEMA GENERATO
     #for w in range(len(cells.keys())):
         #    a = np.copy(cells[f"cell{w+1}"][0])
