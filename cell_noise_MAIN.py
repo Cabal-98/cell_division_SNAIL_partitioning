@@ -131,6 +131,7 @@ def main(ncells,max_population,tmax,nprints):
 
 if __name__ == "__main__":
     ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:]))
-    print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
+    #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
+    sys.stdout.write(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
     main(ncells,max_population,tmax,nprints)
     
