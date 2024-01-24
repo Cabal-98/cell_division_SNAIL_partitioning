@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import math
 import random as rnd
 import scipy
+import pickle
 from scipy.special import factorial
 from scipy.integrate import odeint
 from scipy.special import comb
