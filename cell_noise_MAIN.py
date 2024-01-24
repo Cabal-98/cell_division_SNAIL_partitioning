@@ -99,7 +99,7 @@ def main(ncells,max_population,tmax,nprints):
         hyb_frac.append(t_phenotypes[1]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))
         mes_frac.append(t_phenotypes[2]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))
                                         
-        with open("fractions.txt","w") as f:
+        with open("./output/fractions.txt","w") as f:
            f.write("p = %f - var = %f \n" %(p,var))
            f.write("Epiteliali \t Ibride \t Mesenchimali \n")
            for i in range(len(epi_frac)):
@@ -113,16 +113,17 @@ def main(ncells,max_population,tmax,nprints):
         mes_frac.clear()
         cells.clear()
 
-        #plt.figure("histogram")
-        #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
-        #plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold')
-        #plt.bar(offset + barslenght, mes_frac, barslenght, label='Mesenchimale',color='red')  
-        #plt.xlabel('t')
-        #plt.ylabel('Frazioni')
-        #plt.title('Frazioni 0.99-0.00-0.01, p=%f, var=%f' %(p,var))
-        #plt.xticks(offset, tprint)
-        #plt.legend()
-        #plt.show()
+        
+        plt.figure("histogram")
+        plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
+        plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold')
+        plt.bar(offset + barslenght, mes_frac, barslenght, label='Mesenchimale',color='red')  
+        plt.xlabel('t')
+        plt.ylabel('Frazioni')
+        plt.title('Frazioni 0.99-0.00-0.01, p=%f, var=%f' %(p,var))
+        plt.xticks(offset, tprint)
+        plt.legend()
+        plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
     ncells = 2
