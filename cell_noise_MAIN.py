@@ -74,7 +74,7 @@ def main(ncells,max_population,tmax,nprints):
                 for i in range(len(cells.keys())):
                     cells[f"cell{i+1}"]=np.copy(simulazione(cells[f"cell{i+1}"],t))
                 t_phenotypes = count_phenotype(cells)
-                print("Timestep raggiunto: t = %i",%t)
+                print(f"Timestep raggiunto: t = {t}")
                 t_fractions = t_phenotypes/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2])
                 epi_frac.append(t_fractions[0])
                 hyb_frac.append(t_fractions[1])
