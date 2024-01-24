@@ -31,15 +31,20 @@ def M(mu,mu0,j,n_sum):
 
 def Y(gamma,mu,mu0,n_sum):
     output=0
-    for i in range(n_sum+1): #somme da 0 a 6
-        output = output + math.comb(n_sum,i)*gamma[i]*M(mu,mu0,i,n_sum)
+    i = np.array(range(n_sum+1))
+    def comb(x):
+        return scipy.special.binom(n_sum,x)
+    output = np.sum(np.apply_along_axis(comb, 0, i)*gamma*M(mu,mu0,i,n_sum))
     return output
 
 def Yi(gamma,mu,mu0,n_sum):
     output=0
-    for i in range(n_sum+1): #somme da 0 a 6
-        output = output + math.comb(n_sum,i)*gamma[i]*i*M(mu,mu0,i,n_sum)
+    i = np.array(range(n_sum+1))
+    def comb(x):
+        return scipy.special.binom(n_sum,x)
+    output = np.sum(np.apply_along_axis(comb, 0, i)*gamma*i*M(mu,mu0,i,n_sum))
     return output
+
 
 #FUNZIONI DELL'EVOLUZIONE DELLA POPOLAZIONE
 #Generazione Lognormale per generare un valore di SNAIL
