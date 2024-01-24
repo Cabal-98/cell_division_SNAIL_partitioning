@@ -43,7 +43,7 @@ def main(ncells,max_population,tmax,nprints):
     pv_comb = np.array(np.meshgrid(p_vector,var_vector)).T.reshape(-1,2)
     
     #EVOLUZIONE E DIVISIONI
-    for p, var in pv_comb:
+    for p, var in tqdm(pv_comb):
         print(p, var)
         cellgen(cells,ncells,generation_mean)
         t=0
@@ -112,7 +112,7 @@ def main(ncells,max_population,tmax,nprints):
         mes_frac.clear()
         cells.clear()
 
-        save_object(barslenght, "./output/barslenght" + label + ".pkl" )
+        save_object(offset, "./output/barsxaxis" + label + ".pkl" )
         save_object(epi_frac, "./output/epi_frac" + label + ".pkl")
         save_object(hyb_frac, "./output/hyb_frac" + label + ".pkl")
         save_object(mes_frac, "./output/mes_frac" + label + ".pkl")
