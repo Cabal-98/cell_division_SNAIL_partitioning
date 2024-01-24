@@ -113,19 +113,21 @@ def main(ncells,max_population,tmax,nprints):
         mes_frac.clear()
         cells.clear()
 
-        
-        plt.figure("histogram")
-        plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
-        plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold')
-        plt.bar(offset + barslenght, mes_frac, barslenght, label='Mesenchimale',color='red')  
-        plt.xlabel('t')
-        plt.ylabel('Frazioni')
-        plt.title('Frazioni 0.99-0.00-0.01, p=%f, var=%f' %(p,var))
-        plt.xticks(offset, tprint)
-        plt.legend()
-        plt.savefig("./output/plot.png",dpi=1200)
-
-
+        save_object(barslenght, "barslenght.pkl")
+        save_object(epi_frac, "epi_frac.pkl")
+        save_object(hyb_frac, "hyb_frac.pkl")
+        save_object(mes_frac, "mes_frac.pkl")
+            
+        #plt.figure("histogram")
+        #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
+        #plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold')
+        #plt.bar(offset + barslenght, mes_frac, barslenght, label='Mesenchimale',color='red')  
+        #plt.xlabel('t')
+        #plt.ylabel('Frazioni')
+        #plt.title('Frazioni 0.99-0.00-0.01, p=%f, var=%f' %(p,var))
+        #plt.xticks(offset, tprint)
+        #plt.legend()
+        #plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
     ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:]))
