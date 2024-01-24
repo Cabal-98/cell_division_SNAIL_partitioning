@@ -65,10 +65,11 @@ def main(ncells,max_population,tmax,nprints):
                     cell2[5] = t_check
                     cells[f"cell{j}"] = np.copy(cell1)
                     cells[f"cell{i}"] = np.copy(cell2)
-                    if len(cells.keys()) > max_population:
-                        ran_remove(cells)
+                    if len(cells.keys()) >= max_population:
+                        i=ran_remove(cells)
+                    else:
+                        i+=1
                     t_check,j=checktimes(cells,t)
-                    i+=1
                 if t%tprint_width == 0:
                     for i in range(len(cells.keys())):
                         cells[f"cell{i+1}"]=np.copy(simulazione(cells[f"cell{i+1}"],t))
