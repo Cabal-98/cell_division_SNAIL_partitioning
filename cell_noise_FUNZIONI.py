@@ -80,24 +80,17 @@ def partition(a,a_noise,p,var):
 
 #Duplicazione SNAIL pre-divisione + rumore di partizione
 def duplicate(a,p,var):
-    flag = 0
     b = 0
     c = 0
-    adouble = 0
-    while flag < 10:
-        noise = np.random.normal(eta_mean,eta_var,1) #Fluttuazione dovuta all'errore di duplicazione
-        a_noise = noise[0]*a*eta2
-        #print(a,a_noise)
-        if a+a_noise<0 or a-a_noise<0:
-            flag+=1
-        else:
-            flag=15
-            b,c = partition(a,a_noise,p,var)
-    if flag == 10:
+    noise = np.random.normal(eta_mean,eta_var,10) #Fluttuazione dovuta all'errore di duplicazione
+    a_noise = noiseaeta2
+    try:
+        a_noise = a_noise[((a+a_noise>0) | (a-a_noise>0)).nonzero()]
+        b,c = partition(a,a_noise,p,var)
+    except IndexError:
         b = 0
         c = 0
         print("errore, la cellula è vuota")
-        
     #print(b,c)
     return b,c
 
@@ -153,8 +146,9 @@ def count_phenotype(dizionario):
     return pheno
 
 def ran_remove(cells):
-    r_index = rnd.randint(0,len(cells.keys()))
+    r_index = rnd.randint(1,len(cells.keys()))
     del cells[f"cell{r_index}"]
+    return r_index
 
 #evoluzione temporale del sistema
 def simulazione(parameters,t):
