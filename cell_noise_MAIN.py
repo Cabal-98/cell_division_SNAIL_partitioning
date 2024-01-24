@@ -29,7 +29,6 @@ def main(ncells,max_population,tmax,nprints):
         offset = np.arange(len(tprint))
         #printd(cells)
         #print("\n")
-    print(tprint_width)
     #TEST GRAFICO DEL SISTEMA GENERATO
     #for w in range(len(cells.keys())):
         #    a = np.copy(cells[f"cell{w+1}"][0])
@@ -44,6 +43,7 @@ def main(ncells,max_population,tmax,nprints):
     
     #EVOLUZIONE E DIVISIONI
     for p, var in pv_comb:
+        print(tprint_width)
         print(p, var)
         cellgen(cells,ncells,generation_mean)
         t=0
