@@ -63,9 +63,9 @@ def SNAILgen(generation_mean):
 
 #Partizione di SNAIL tra le due cellule figlie
 def partition(a,a_noise,p,var):
-    r=2
-    while r<0 or r>1: 
-        r = np.random.normal(p,var,1) #Fluttuazione dovuta alla partizione 
+    r = np.abs(np.random.normal(p,var,1)) #Fluttuazione dovuta alla partizione 
+    if r[0] > 1:
+        r[0]=1
     b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
     c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
     if b<=0 or c<=0:
