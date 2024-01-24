@@ -10,14 +10,11 @@ def main(ncells,max_population,tmax,nprints):
     cell1=np.array([0,0,0,0,0,0])
     cell2=np.array([0,0,0,0,0,0])
 
-
     t_phenotypes = np.empty(3)
     t_fractions  = np.empty(3)
     epi_frac = []
     hyb_frac = []
     mes_frac = []
-    
-    
 
     t = 0
     #Parametri per stampa periodica
