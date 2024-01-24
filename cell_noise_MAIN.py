@@ -113,9 +113,9 @@ def main(ncells,max_population,tmax,nprints):
         cells.clear()
 
         save_object(barslenght, "./output/barslenght" + label + ".pkl" )
-        save_object(epi_frac, "./output/epi_frac.pkl" + label + ".pkl")
-        save_object(hyb_frac, "./output/hyb_frac.pkl" + label + ".pkl")
-        save_object(mes_frac, "./output/mes_frac.pkl" + label + ".pkl")
+        save_object(epi_frac, "./output/epi_frac" + label + ".pkl")
+        save_object(hyb_frac, "./output/hyb_frac" + label + ".pkl")
+        save_object(mes_frac, "./output/mes_frac" + label + ".pkl")
             
         #plt.figure("histogram")
         #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
