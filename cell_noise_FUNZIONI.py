@@ -41,17 +41,6 @@ def Yi(gamma,mu,mu0,n_sum):
         output = output + math.comb(n_sum,i)*gamma[i]*i*M(mu,mu0,i,n_sum)
     return output
 
-#Reset contenuto Vettori, non credo siano utilizzate dopo alcune modifiche
-def inizializza(a):
-    a[0]=a[n_t_max-1]
-    #a[1:n_t_max]*=0
-    return a
-
-def azzera(a):
-    a*=0
-    return a 
-
-
 #FUNZIONI DELL'EVOLUZIONE DELLA POPOLAZIONE
 #Generazione Lognormale per generare un valore di SNAIL
 def SNAILgen(generation_mean):
