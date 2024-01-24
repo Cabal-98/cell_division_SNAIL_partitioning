@@ -209,7 +209,7 @@ def cellgen(cells,ncells,generation_mean):
     i=1
     #Qualche riga che serve per implementare la scelta delle frazioni
     #SE SI VOGLIONO SELEZIONARE LE FRAZIONI DI PARTENZA MODIFICARE QUI
-    fractions=[0.99,0.01,0.0] # 0-epi, 1-hyb, 2-mes
+    fractions=[0.99,0.0,0.01] # 0-epi, 1-hyb, 2-mes
     if state == 4:
         fractions[1] = round(fractions[1] * ncells)
         fractions[2] = round(fractions[2] * ncells)
