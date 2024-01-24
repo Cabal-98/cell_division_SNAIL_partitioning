@@ -85,7 +85,7 @@ def duplicate(a,p,var):
     noise = np.random.normal(eta_mean,eta_var,10) #Fluttuazione dovuta all'errore di duplicazione
     a_noise = noiseaeta2
     try:
-        a_noise = a_noise[((a+a_noise>0) | (a-a_noise>0)).nonzero()]
+        a_noise = a_noise[((a+a_noise>0) | (a-a_noise>0)).nonzero()][0]
         b,c = partition(a,a_noise,p,var)
     except IndexError:
         b = 0
