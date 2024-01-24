@@ -113,6 +113,16 @@ def main(ncells,max_population,tmax,nprints):
         mes_frac.clear()
         cells.clear()
 
+        #plt.figure("histogram")
+        #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
+        #plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold')
+        #plt.bar(offset + barslenght, mes_frac, barslenght, label='Mesenchimale',color='red')  
+        #plt.xlabel('t')
+        #plt.ylabel('Frazioni')
+        #plt.title('Frazioni 0.99-0.00-0.01, p=%f, var=%f' %(p,var))
+        #plt.xticks(offset, tprint)
+        #plt.legend()
+        #plt.show()
 
 if __name__ == "__main__":
     ncells = 2
