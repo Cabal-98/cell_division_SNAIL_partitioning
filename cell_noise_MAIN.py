@@ -49,7 +49,11 @@ def main(ncells,max_population,tmax,nprints):
         cellgen(cells,ncells,generation_mean)
         t=0
         i=ncells+1
+
+        pbar = tqdm(total = tmax)
+        
         while t < tmax:
+            pbar.update(tstep)
             t_check,j=checktimes(cells)
             while t_check < t:
                 #print(t_check, t)
@@ -81,7 +85,9 @@ def main(ncells,max_population,tmax,nprints):
                 hyb_frac.append(t_fractions[1])
                 mes_frac.append(t_fractions[2])
             t+=tstep
-                        
+
+        pbar.close()
+        
         for w in range(len(cells.keys())):
             cells[f"cell{w+1}"] = np.copy(simulazione(cells[f"cell{w+1}"],-1))
             #a = cells[f"cell{w+1}"][0]
