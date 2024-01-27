@@ -48,7 +48,7 @@ def main(ncells,max_population,tmax,nprints):
         print(p, var)
         cellgen(cells,ncells,generation_mean)
         t=0
-        i=ncells+1
+        i=ncells #aggiungere +1 se si sposta l'if e quindi l'aggiornamento dell'indice avviene dopo
 
         pbar = tqdm(total = tmax)
         
@@ -64,16 +64,17 @@ def main(ncells,max_population,tmax,nprints):
                 #print(cell1[0])
                 #print(cell2[0])
                 #print("\n")
+                if len(cells.keys()) >= max_population:
+                    i=ran_remove(cells)
+                else:
+                    i+=1 #Controllare bene l'indicizzazione perché è stato fornito a "simulazione" una cell vuota
                 cell1[4] = t_check+division_t()
                 cell1[5] = t_check
                 cell2[4] = t_check+division_t()
                 cell2[5] = t_check
                 cells[f"cell{j}"] = np.copy(cell1)
                 cells[f"cell{i}"] = np.copy(cell2)
-                if len(cells.keys()) >= max_population:
-                    i=ran_remove(cells)
-                else:
-                    i+=1
+                #Ho provato a spostare in alto l'if di controllo del numero totale
                 t_check,j=checktimes(cells)
             if t%tprint_width == 0:
                 for i in range(len(cells.keys())):
