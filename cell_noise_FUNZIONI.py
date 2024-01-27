@@ -145,7 +145,7 @@ def count_phenotype(dizionario):
 
 def ran_remove(cells):
     r_index = rnd.randint(1,len(cells.keys()))
-    del cells[f"cell{r_index}"]
+    cells.pop(f"cell{r_index}")
     return r_index
 
 #evoluzione temporale del sistema
