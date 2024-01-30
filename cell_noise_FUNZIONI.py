@@ -96,7 +96,7 @@ def duplicate(a,p,var):
     #print(b,c)
     return b,c
 
-def cell_division(cell,p,var)
+def cell_division(cell,p,var):
     cell1=np.array([0,0,0,0,0,0])
     cell2=np.array([0,0,0,0,0,0])
     cell1[0],cell2[0] = duplicate(cell[0],p,var)
