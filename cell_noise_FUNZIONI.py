@@ -90,8 +90,8 @@ def duplicate(a,p,var):
         a_noise = a_noise[((a+a_noise>0) | (a-a_noise>0)).nonzero()][0]
         b,c = partition(a,a_noise,p,var)
     except IndexError:
-        b = 0
-        c = 0
+        b = 1
+        c = 1
         print("errore, la cellula è vuota")
     #print(b,c)
     return b,c
