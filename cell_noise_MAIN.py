@@ -128,9 +128,9 @@ def main(ncells,max_population,tmax,nprints):
         save_object(mes_frac, "./output2/mes_frac" + label + ".pkl")
             
         #plt.figure("histogram")
-        #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
-        #plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold')
-        #plt.bar(offset + barslenght, mes_frac, barslenght, label='Mesenchimale',color='red')  
+        #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue',edgecolor='black')
+        #plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold',edgecolor='black')
+        #plt.bar(offset + barslenght, mes_frac, barslenght, label='Mesenchimale',color='red',edgecolor='black')  
         #plt.xlabel('t')
         #plt.ylabel('Frazioni')
         #plt.title('Frazioni 0.99-0.00-0.01, p=%f, var=%f' %(p,var))
