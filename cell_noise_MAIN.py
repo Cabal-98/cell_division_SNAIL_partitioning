@@ -108,7 +108,7 @@ def main(ncells,max_population,tmax,nprints):
         
         label = "_" + str(p).replace(".","") + "_" + str(var).replace(".","")
         
-        with open("./output/fractions" + label + ".txt","w") as f:
+        with open("./output2/fractions" + label + ".txt","w") as f:
            f.write("p = %f - var = %f \n" %(p,var))
            f.write("Epiteliali \t Ibride \t Mesenchimali \n")
            for i in range(len(epi_frac)):
@@ -122,10 +122,10 @@ def main(ncells,max_population,tmax,nprints):
         mes_frac.clear()
         cells.clear()
 
-        save_object(offset, "./output/barsxaxis" + label + ".pkl" )
-        save_object(epi_frac, "./output/epi_frac" + label + ".pkl")
-        save_object(hyb_frac, "./output/hyb_frac" + label + ".pkl")
-        save_object(mes_frac, "./output/mes_frac" + label + ".pkl")
+        save_object(offset, "./output2/barsxaxis" + label + ".pkl" )
+        save_object(epi_frac, "./output2/epi_frac" + label + ".pkl")
+        save_object(hyb_frac, "./output2/hyb_frac" + label + ".pkl")
+        save_object(mes_frac, "./output2/mes_frac" + label + ".pkl")
             
         #plt.figure("histogram")
         #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue')
