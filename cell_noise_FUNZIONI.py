@@ -84,7 +84,7 @@ def partition(a,a_noise,p,var):
 def duplicate(a,p,var):
     b = 0
     c = 0
-    noise = np.random.normal(eta_mean,eta_var,10) #Fluttuazione dovuta all'errore di duplicazione
+    noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
     a_noise = noise*eta2
     try:
         a_noise = a_noise[((a+a_noise>0) | (a-a_noise>0)).nonzero()][0]
