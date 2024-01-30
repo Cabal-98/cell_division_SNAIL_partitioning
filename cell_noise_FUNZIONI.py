@@ -85,9 +85,9 @@ def duplicate(a,p,var):
     b = 0
     c = 0
     noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
-    a_noise = noise*eta2
+    a_noise = noise*eta2*a
     try:
-        a_noise = a_noise[((a+a_noise>0) | (a-a_noise>0)).nonzero()][0]
+        a_noise = a_noise[(a+a_noise>0).nonzero()][0]
         b,c = partition(a,a_noise,p,var)
     except IndexError:
         b = 1
@@ -95,6 +95,17 @@ def duplicate(a,p,var):
         print("errore, la cellula è vuota")
     #print(b,c)
     return b,c
+
+def cell_division(cell,p,var)
+    cell1=np.array([0,0,0,0,0,0])
+    cell2=np.array([0,0,0,0,0,0])
+    cell1[0],cell2[0] = duplicate(cell[0],p,var)
+    cell1[1],cell2[1] = duplicate(cell[1],p,var)
+    cell1[2],cell2[2] = duplicate(cell[2],p,var)
+    cell1[3],cell2[3] = duplicate(cell[3],p,var)
+    cell1[4],cell2[4] = cell[4]
+    cell1[5],cell2[5] = cell[5]
+    return cell1,cell2
 
 #Stampo decentemente i dizionari
 def printd(dizionario):
