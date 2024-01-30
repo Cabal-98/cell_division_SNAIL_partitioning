@@ -61,7 +61,7 @@ def main(ncells,max_population,tmax,nprints):
                 cell2 = np.copy(cell1)
                 #print(cell1)
                 #cell1[0], cell2[0] = duplicate(cells[f"cell{j}"][0],p,var)
-                cell1, cell2 = duplicate(cells[f"cell{j}"],p,var)
+                cell1, cell2 = cell_division(cells[f"cell{j}"],p,var)
                 #print(cell1[0])
                 #print(cell2[0])
                 #print("\n")
