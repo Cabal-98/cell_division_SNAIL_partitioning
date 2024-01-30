@@ -103,8 +103,10 @@ def cell_division(cell,p,var):
     cell1[1],cell2[1] = duplicate(cell[1],p,var)
     cell1[2],cell2[2] = duplicate(cell[2],p,var)
     cell1[3],cell2[3] = duplicate(cell[3],p,var)
-    cell1[4],cell2[4] = cell[4]
-    cell1[5],cell2[5] = cell[5]
+    cell1[4] = cell[4]
+    cell2[4] = cell[4]
+    cell1[5] = cell[5]
+    cell2[5] = cell[5]
     return cell1,cell2
 
 #Stampo decentemente i dizionari
