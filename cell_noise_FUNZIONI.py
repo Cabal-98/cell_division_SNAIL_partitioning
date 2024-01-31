@@ -81,7 +81,7 @@ def partition(a,a_noise,p,var):
     return b,c
 
 #Duplicazione SNAIL pre-divisione + rumore di partizione
-def duplicate(a,p,var):
+def duplicate(a,p,var,index):
     b = 0
     c = 0
     noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
@@ -93,7 +93,7 @@ def duplicate(a,p,var):
     else:
         b=a
         c=a
-        print(f"errore, la cellula è vuota: a = {a}")
+        print(f"errore, il parametro {index} è vuoto: a = {a}")
     #except IndexError:
     #    b = 1
     #    c = 1
@@ -104,10 +104,10 @@ def duplicate(a,p,var):
 def cell_division(cell,p,var):
     cell1=np.array([0,0,0,0,0,0])
     cell2=np.array([0,0,0,0,0,0])
-    cell1[0],cell2[0] = duplicate(cell[0],p,var)
-    cell1[1],cell2[1] = duplicate(cell[1],p,var)
-    cell1[2],cell2[2] = duplicate(cell[2],p,var)
-    cell1[3],cell2[3] = duplicate(cell[3],p,var)
+    cell1[0],cell2[0] = duplicate(cell[0],p,var,'SNAIL')
+    cell1[1],cell2[1] = duplicate(cell[1],p,var,'mu200')
+    cell1[2],cell2[2] = duplicate(cell[2],p,var,'mZEB')
+    cell1[3],cell2[3] = duplicate(cell[3],p,var,'ZEB')
     cell1[4] = cell[4]
     cell2[4] = cell[4]
     cell1[5] = cell[5]
