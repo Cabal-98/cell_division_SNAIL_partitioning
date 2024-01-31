@@ -62,7 +62,8 @@ def SNAILgen(generation_mean):
     #print(generation_mean)
     sigma = np.sqrt(np.log(2))
     mu = np.log(generation_mean) - 0.5 * sigma**2
-    a = np.random.lognormal(mu,sigma,1)
+    a = np.random.lognormal(mu,sigma,1000)
+    a = a[(a>10e3).nonzero()]
     return a[0]
 
 #Partizione di SNAIL tra le due cellule figlie
