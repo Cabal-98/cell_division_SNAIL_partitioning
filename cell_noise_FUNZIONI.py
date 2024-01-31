@@ -89,7 +89,6 @@ def partition(a,a_noise,p,var,index):
     else:
         min_cap = 10
     r = np.abs(np.random.normal(p,var,1)) #Fluttuazione dovuta alla partizione 
-    print(r[0])
     if r[0] > 1:
         r[0]=1
     a_doubled = 2*a + a_noise
