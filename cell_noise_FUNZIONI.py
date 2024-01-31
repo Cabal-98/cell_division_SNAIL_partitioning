@@ -54,6 +54,8 @@ def Yi(gamma,mu,mu0,n_sum):
     return output
 
 
+
+
 #FUNZIONI DELL'EVOLUZIONE DELLA POPOLAZIONE
 #Generazione Lognormale per generare un valore di SNAIL
 def SNAILgen(generation_mean):
@@ -93,13 +95,34 @@ def duplicate(a,p,var,index):
     else:
         b=a
         c=a
-        print(f"errore, il parametro {index} è vuoto: a = {a}")
+        print(f"Errore, il parametro {index}  vuoto: a = {a}")
     #except IndexError:
     #    b = 1
     #    c = 1
     #    print(f"errore, la cellula è vuota: a = {a}")
     #print(b,c)
     return b,c
+
+    def duplicateSNAIL(a,p,var,index):
+    b = 0
+    c = 0
+    noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
+    a_noise = noise*eta2*a
+    #try:
+    a_noise = a_noise[(a+a_noise>10000).nonzero()]
+    if len(a_noise)>0:
+        b,c = partition(a,a_noise[0],p,var)
+    else:
+        b=a
+        c=a
+        print(f"Errore, il parametro {index}  vuoto: a = {a}")
+    #except IndexError:
+    #    b = 1
+    #    c = 1
+    #    print(f"errore, la cellula è vuota: a = {a}")
+    #print(b,c)
+    return b,c
+
 
 def cell_division(cell,p,var):
     cell1=np.array([0,0,0,0,0,0])
@@ -113,19 +136,6 @@ def cell_division(cell,p,var):
     cell1[5] = cell[5]
     cell2[5] = cell[5]
     return cell1,cell2
-
-#Stampo decentemente i dizionari
-def printd(dizionario):
-    i=1
-    while i<=len(dizionario.keys()):
-        print(dizionario[f"cell{i}"])
-        i+=1
-        
-def printcolumn(vector,name):
-    print(name)
-    for i in range(len(vector)):
-        print(vector[i])
-    print("\n")
 
 #Genero il tempo della prossima divisione
 #Pensavo di assumere ΔT=1 corrispondente a 10 minuti, così da avere un dt pari a 1 minuto e un rate di una divisione ogni Δt=108
@@ -147,18 +157,48 @@ def checktimes(dizionario):
     j = int(key[4:])
     return t,j
 
+
+
+
+
+#Stampo decentemente i dizionari
+def printd(dizionario):
+    i=1
+    while i<=len(dizionario.keys()):
+        print(dizionario[f"cell{i}"])
+        i+=1
+        
+def printcolumn(vector,name):
+    print(name)
+    for i in range(len(vector)):
+        print(vector[i])
+    print("\n")
+
+
+
 #conto il numero di cellule in uno stato rispetto ad un altro
+#def count_phenotype(dizionario):
+#    pheno=np.zeros(3)
+#    #Idea di registrare tutti i fenotipi di ogni cellula
+#    #Assegnamo i fenotipi: 0=epiteliale, 1=ibrido, 2=mesenchimale
+#    for i in range(len(dizionario.keys())):
+#        if dizionario[f"cell{i+1}"][2] >= 600:
+#            pheno[2]+=1
+#        if dizionario[f"cell{i+1}"][2] <= 125:
+#            pheno[0]+=1
+#        if (dizionario[f"cell{i+1}"][2] > 125) and (dizionario[f"cell{i+1}"][2] < 600):
+#            pheno[1]+=1     
+#    return pheno
+
 def count_phenotype(dizionario):
-    pheno=np.zeros(3)
     #Idea di registrare tutti i fenotipi di ogni cellula
     #Assegnamo i fenotipi: 0=epiteliale, 1=ibrido, 2=mesenchimale
-    for i in range(len(dizionario.keys())):
-        if dizionario[f"cell{i+1}"][2] >= 600:
-            pheno[2]+=1
-        if dizionario[f"cell{i+1}"][2] <= 125:
-            pheno[0]+=1
-        if (dizionario[f"cell{i+1}"][2] > 125) and (dizionario[f"cell{i+1}"][2] < 600):
-            pheno[1]+=1     
+    pheno=np.zeros(3)
+    values = np.stack(list(dizionario.values()))
+
+    pheno[2] = np.sum(values>= 600, axis=0)[2]
+    pheno[0] = np.sum(values<= 125, axis=0)[2]
+    pheno[1] = np.sum((values> 125)&(values<600), axis=0)[2]
     return pheno
 
 def ran_remove(cells):
