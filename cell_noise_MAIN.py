@@ -57,8 +57,7 @@ def main(ncells,max_population,tmax,nprints):
             t_check,j=checktimes(cells)
             while t_check < t:
                 #print(t_check, t)
-                cell1 = np.copy(simulazione(cells[f"cell{j}"],t_check))
-                cell2 = np.copy(cell1)
+                cells[f"cell{j}"] = np.copy(simulazione(cells[f"cell{j}"],t_check))
                 #print(cell1)
                 #cell1[0], cell2[0] = duplicate(cells[f"cell{j}"][0],p,var)
                 cell1, cell2 = cell_division(cells[f"cell{j}"],p,var)
