@@ -86,13 +86,18 @@ def duplicate(a,p,var):
     c = 0
     noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
     a_noise = noise*eta2*a
-    try:
-        a_noise = a_noise[(a+a_noise>0).nonzero()][0]
-        b,c = partition(a,a_noise,p,var)
-    except IndexError:
-        b = 1
-        c = 1
-        print("errore, la cellula è vuota")
+    #try:
+    a_noise = a_noise[(a+a_noise>0).nonzero()]
+    if len(a_noise)>0:
+        b,c = partition(a,a_noise[0],p,var)
+    else:
+        b=a
+        c=a
+        print(f"errore, la cellula è vuota: a = {a}")
+    #except IndexError:
+    #    b = 1
+    #    c = 1
+    #    print(f"errore, la cellula è vuota: a = {a}")
     #print(b,c)
     return b,c
 
