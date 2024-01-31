@@ -66,19 +66,70 @@ def SNAILgen(generation_mean):
     return a[0]
 
 #Partizione di SNAIL tra le due cellule figlie
-def partition(a,a_noise,p,var):
+#QUESTA VERSIONE DELLA FUNZIONE, UTILIZZATA DALL'ARTICOLO, FUNZIONA IN MODO STUPIDO E DIFETTOSO
+#def partition(a,a_noise,p,var):
+#    r = np.abs(np.random.normal(p,var,1)) #Fluttuazione dovuta alla partizione 
+#    if r[0] > 1:
+#        r[0]=1
+#    b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
+#    c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
+#    if b<=0 or c<=0:
+#        if b<=0:
+#            c=c-b-1
+#            b=1
+#        else:
+#            b=b-c-1
+#            c=1
+#    #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
+#    return b,c
+
+def partitionSNAIL(a,a_noise,p,var):
     r = np.abs(np.random.normal(p,var,1)) #Fluttuazione dovuta alla partizione 
+    print(r[0])
     if r[0] > 1:
         r[0]=1
-    b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
-    c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
-    if b<=0 or c<=0:
-        if b<=0:
-            c=c-b-1
-            b=1
+    a_doubled = 2*a + a_noise
+    b = a_doubled*r[0]
+    c = a_doubled*(1-r[0])
+    #b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
+    #c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
+    if b<=1 or c<=1:
+        if b<=10 and c>10:
+            alpha = 10 - b
+            c=c+alpha
+            b=10
+        elif c<=10e3 and b>10e3:
+            beta = 10 - c
+            b=b+beta
+            c=10
         else:
-            b=b-c-1
-            c=1
+            b=10
+            c=10
+    #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
+    return b,c
+    
+def partitionSNAIL(a,a_noise,p,var):
+    r = np.abs(np.random.normal(p,var,1)) #Fluttuazione dovuta alla partizione 
+    print(r[0])
+    if r[0] > 1:
+        r[0]=1
+    a_doubled = 2*a + a_noise
+    b = a_doubled*r[0]
+    c = a_doubled*(1-r[0])
+    #b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
+    #c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
+    if b<=1 or c<=1:
+        if b<=10e3 and c>10e3:
+            alpha = 10e3 - b
+            c=c+alpha
+            b=10e3
+        elif c<=10e3 and b>10e3:
+            beta = 10e3 - c
+            b=b+beta
+            c=10e3
+        else:
+            b=10e3
+            c=10e3
     #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
     return b,c
 
@@ -103,15 +154,15 @@ def duplicate(a,p,var,index):
     #print(b,c)
     return b,c
 
-    def duplicateSNAIL(a,p,var,index):
+def duplicateSNAIL(a,p,var,index):
     b = 0
     c = 0
     noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
     a_noise = noise*eta2*a
     #try:
-    a_noise = a_noise[(a+a_noise>10000).nonzero()]
+    a_noise = a_noise[(a+a_noise>0).nonzero()]
     if len(a_noise)>0:
-        b,c = partition(a,a_noise[0],p,var)
+        b,c = partitionSNAIL(a,a_noise[0],p,var)
     else:
         b=a
         c=a
@@ -127,7 +178,7 @@ def duplicate(a,p,var,index):
 def cell_division(cell,p,var):
     cell1=np.array([0,0,0,0,0,0])
     cell2=np.array([0,0,0,0,0,0])
-    cell1[0],cell2[0] = duplicate(cell[0],p,var,'SNAIL')
+    cell1[0],cell2[0] = duplicateSNAIL(cell[0],p,var,'SNAIL')
     cell1[1],cell2[1] = duplicate(cell[1],p,var,'mu200')
     cell1[2],cell2[2] = duplicate(cell[2],p,var,'mZEB')
     cell1[3],cell2[3] = duplicate(cell[3],p,var,'ZEB')
