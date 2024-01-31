@@ -83,7 +83,7 @@ def SNAILgen(generation_mean):
 #    #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
 #    return b,c
 
-def partitionSNAIL(a,a_noise,p,var):
+def partition(a,a_noise,p,var):
     r = np.abs(np.random.normal(p,var,1)) #Fluttuazione dovuta alla partizione 
     print(r[0])
     if r[0] > 1:
@@ -91,14 +91,12 @@ def partitionSNAIL(a,a_noise,p,var):
     a_doubled = 2*a + a_noise
     b = a_doubled*r[0]
     c = a_doubled*(1-r[0])
-    #b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
-    #c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
-    if b<=1 or c<=1:
+    if b<=10 or c<=10:
         if b<=10 and c>10:
             alpha = 10 - b
             c=c+alpha
             b=10
-        elif c<=10e3 and b>10e3:
+        elif c<=10 and b>10:
             beta = 10 - c
             b=b+beta
             c=10
@@ -116,9 +114,7 @@ def partitionSNAIL(a,a_noise,p,var):
     a_doubled = 2*a + a_noise
     b = a_doubled*r[0]
     c = a_doubled*(1-r[0])
-    #b = a + 0.5*a_noise + r[0]*(2*a+a_noise)
-    #c = a + 0.5*a_noise - r[0]*(2*a+a_noise)
-    if b<=1 or c<=1:
+    if b<=10e3 or c<=10e3:
         if b<=10e3 and c>10e3:
             alpha = 10e3 - b
             c=c+alpha
@@ -140,7 +136,7 @@ def duplicate(a,p,var,index):
     noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
     a_noise = noise*eta2*a
     #try:
-    a_noise = a_noise[(a+a_noise>0).nonzero()]
+    a_noise = a_noise[(2*a+a_noise>10).nonzero()]
     if len(a_noise)>0:
         b,c = partition(a,a_noise[0],p,var)
     else:
@@ -160,7 +156,7 @@ def duplicateSNAIL(a,p,var,index):
     noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
     a_noise = noise*eta2*a
     #try:
-    a_noise = a_noise[(a+a_noise>0).nonzero()]
+    a_noise = a_noise[(2*a+a_noise>0).nonzero()]
     if len(a_noise)>0:
         b,c = partitionSNAIL(a,a_noise[0],p,var)
     else:
