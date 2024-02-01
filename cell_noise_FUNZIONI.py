@@ -126,9 +126,12 @@ def duplicate(a,p,var,index):
     if len(a_noise)>0:
         b,c = partition(a,a_noise[0],p,var,min_cap)
     else:
+        print(f"Errore, il parametro {index} è inferiore ai limiti: a = {a}")        
+        if a<min_cap:
+            a = min_cap
         b=a
         c=a
-        print(f"Errore, il parametro {index}  vuoto: a = {a}")
+
     #except IndexError:
     #    b = 1
     #    c = 1
