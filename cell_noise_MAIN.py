@@ -116,16 +116,17 @@ def main(ncells,max_population,tmax,nprints):
            f.write("conta fenotipi:   Epi = %i, Hyb = %i, Mes = %i \n" %(t_phenotypes[0],t_phenotypes[1],t_phenotypes[2]))
            f.write("percent fenotipi: Epi = %f, Hyb = %f, Mes = %f \n" %((t_phenotypes[0]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2])),(t_phenotypes[1]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2])),(t_phenotypes[2]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))))
            f.write("\n")
-        epi_frac.clear()
-        hyb_frac.clear()
-        mes_frac.clear()
-        cells.clear()
 
         save_object(offset, "./output3/barsxaxis" + label + ".pkl" )
         save_object(epi_frac, "./output3/epi_frac" + label + ".pkl")
         save_object(hyb_frac, "./output3/hyb_frac" + label + ".pkl")
         save_object(mes_frac, "./output3/mes_frac" + label + ".pkl")
-            
+
+        epi_frac.clear()
+        hyb_frac.clear()
+        mes_frac.clear()
+        cells.clear()
+        
         #plt.figure("histogram")
         #plt.bar(offset - barslenght, epi_frac, barslenght, label='Epiteliale', color='blue',edgecolor='black')
         #plt.bar(offset,                  hyb_frac, barslenght, label='Ibrido', color='gold',edgecolor='black')
