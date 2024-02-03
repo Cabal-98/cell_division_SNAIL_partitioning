@@ -105,7 +105,7 @@ def main(ncells,max_population,tmax,nprints):
         hyb_frac.append(t_phenotypes[1]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))
         mes_frac.append(t_phenotypes[2]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))
         
-        label = "_" + str(p).replace(".","") + "_" + str(var).replace(".","") + "_" + str(ncells)
+        label = "_" + str(p).replace(".","") + "_" + str(var).replace(".","") + "_" + str(max_population)
         
         with open("./output3/fractions" + label + ".txt","w") as f:
            f.write("p = %f - var = %f \n" %(p,var))
