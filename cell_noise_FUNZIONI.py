@@ -116,8 +116,8 @@ def partition_2(a,a_noise,p,var,index,r):
     else:
         min_cap = 10
     a_doubled = 2*a + a_noise
-    b = a_doubled*r[0]
-    c = a_doubled*(1-r[0])
+    b = a_doubled*r
+    c = a_doubled*(1-r)
     if b<=min_cap or c<=min_cap:
         if b<=min_cap and c>min_cap:
             alpha = min_cap - b
