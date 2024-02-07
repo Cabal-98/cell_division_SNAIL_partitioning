@@ -110,6 +110,28 @@ def partition(a,a_noise,p,var,index):
     #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
     return b,c
     
+def partition_2(a,a_noise,p,var,index,r):
+    if index == 'SNAIL':
+        min_cap = 10e3
+    else:
+        min_cap = 10
+    a_doubled = 2*a + a_noise
+    b = a_doubled*r[0]
+    c = a_doubled*(1-r[0])
+    if b<=min_cap or c<=min_cap:
+        if b<=min_cap and c>min_cap:
+            alpha = min_cap - b
+            c=c+alpha
+            b=min_cap
+        elif c<=min_cap and b>min_cap:
+            beta = min_cap - c
+            b=b+beta
+            c=min_cap
+        else:
+            b=min_cap
+            c=min_cap
+    #print("cell1 = %f, noise = %f, figlie = %f - %f" %(a,a_noise,b,c))
+    return b,c
 
 #Duplicazione SNAIL pre-divisione + rumore di partizione
 def duplicate(a,p,var,index):
@@ -139,13 +161,43 @@ def duplicate(a,p,var,index):
     #print(b,c)
     return b,c
 
-def cell_division(cell,p,var):
+def duplicate_2(a,p,var,index,r):
+    b = 0
+    c = 0
+    if index == 'SNAIL':
+        min_cap = 10e3
+    else:
+        min_cap = 10
+    noise = np.random.normal(eta_mean,eta_var,1000) #Fluttuazione dovuta all'errore di duplicazione
+    a_noise = noise*eta2*a
+    #try:
+    a_noise = a_noise[(2*a+a_noise>min_cap).nonzero()]
+    if len(a_noise)>0:
+        b,c = partition_2(a,a_noise[0],p,var,min_cap,r)
+    else:
+        print(f"Errore, il parametro {index} è inferiore ai limiti: a = {a}")        
+        if a<min_cap:
+            a = min_cap
+        b=a
+        c=a
+    return b,c
+
+def cell_division(cell,p,var,division_mode):
     cell1=np.array([0,0,0,0,0,0])
     cell2=np.array([0,0,0,0,0,0])
-    cell1[0],cell2[0] = duplicate(cell[0],p,var,'SNAIL')
-    cell1[1],cell2[1] = duplicate(cell[1],p,var,'mu200')
-    cell1[2],cell2[2] = duplicate(cell[2],p,var,'mZEB')
-    cell1[3],cell2[3] = duplicate(cell[3],p,var,'ZEB')
+    if division_mode == 'indipendente':
+        cell1[0],cell2[0] = duplicate(cell[0],p,var,'SNAIL')
+        cell1[1],cell2[1] = duplicate(cell[1],p,var,'mu200')
+        cell1[2],cell2[2] = duplicate(cell[2],p,var,'mZEB')
+        cell1[3],cell2[3] = duplicate(cell[3],p,var,'ZEB')
+    elif division_mode == 'unito':
+        r = np.abs(np.random.normal(p,var,1)) #Fluttuazione dovuta alla partizione 
+        if r[0] > 1:
+            r[0]=1
+        cell1[0],cell2[0] = duplicate_2(cell[0],p,var,'SNAIL',r[0])
+        cell1[1],cell2[1] = duplicate_2(cell[1],p,var,'mu200',r[0])
+        cell1[2],cell2[2] = duplicate_2(cell[2],p,var,'mZEB',r[0])
+        cell1[3],cell2[3] = duplicate_2(cell[3],p,var,'ZEB',r[0])
     cell1[4] = cell[4]
     cell2[4] = cell[4]
     cell1[5] = cell[5]
