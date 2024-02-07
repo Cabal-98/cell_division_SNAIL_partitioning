@@ -142,5 +142,8 @@ if __name__ == "__main__":
     ncells, max_population, tmax, nprints, division_mode = list(map(int,sys.argv[1:]))
     #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
     print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints} - division_mode = {division_mode}")
-    main(ncells,max_population,tmax,nprints,division_mode)
-    
+    modalita = ['indipendente','unito']
+    if division_mode in modalita:
+        main(ncells,max_population,tmax,nprints,division_mode)
+    else:
+        print(f"L'input 'division_mode' accetta solo i valori: {modalita}")
