@@ -60,7 +60,7 @@ def main(ncells,max_population,tmax,nprints,division_mode):
                 cells[f"cell{j}"] = np.copy(simulazione(cells[f"cell{j}"],t_check))
                 #print(cell1)
                 #cell1[0], cell2[0] = duplicate(cells[f"cell{j}"][0],p,var)
-                cell1, cell2 = cell_division(cells[f"cell{j}"],p,var)
+                cell1, cell2 = cell_division(cells[f"cell{j}"],p,var,division_mode)
                 #print(cell1[0])
                 #print(cell2[0])
                 #print("\n")
