@@ -2,7 +2,7 @@ from cell_noise_LIBRERIE import *
 from cell_noise_COSTANTI import *
 from cell_noise_FUNZIONI import *
 
-def main(ncells,max_population,tmax,nprints,division_mode):
+def main(ncells,max_population,tmax,nprints,division_mode,output_path):
     #CELLULA
     cells = defaultdict(list)
     #Stato: SNAIL=0, mu200=1, mZ=2, Z=3, tnext=4, t0=5 dove t0 è il tempo di ultima divisione e tnext il tempo della prossima
@@ -107,7 +107,7 @@ def main(ncells,max_population,tmax,nprints,division_mode):
         
         label = "_" + str(p).replace(".","") + "_" + str(var).replace(".","") + "_" + str(max_population)
         
-        with open("./output3/fractions" + label + ".txt","w") as f:
+        with open(output_path + "fractions" + label + ".txt","w") as f:
            f.write("p = %f - var = %f \n" %(p,var))
            f.write("Epiteliali \t Ibride \t Mesenchimali \n")
            for i in range(len(epi_frac)):
@@ -117,10 +117,10 @@ def main(ncells,max_population,tmax,nprints,division_mode):
            f.write("percent fenotipi: Epi = %f, Hyb = %f, Mes = %f \n" %((t_phenotypes[0]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2])),(t_phenotypes[1]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2])),(t_phenotypes[2]/(t_phenotypes[0]+t_phenotypes[1]+t_phenotypes[2]))))
            f.write("\n")
 
-        save_object(offset, "./output3/barsxaxis" + label + ".pkl" )
-        save_object(epi_frac, "./output3/epi_frac" + label + ".pkl")
-        save_object(hyb_frac, "./output3/hyb_frac" + label + ".pkl")
-        save_object(mes_frac, "./output3/mes_frac" + label + ".pkl")
+        save_object(offset, output_path + "barsxaxis" + label + ".pkl" )
+        save_object(epi_frac, output_path + "epi_frac" + label + ".pkl")
+        save_object(hyb_frac, output_path + "hyb_frac" + label + ".pkl")
+        save_object(mes_frac, output_path + "mes_frac" + label + ".pkl")
 
         epi_frac.clear()
         hyb_frac.clear()
@@ -139,12 +139,13 @@ def main(ncells,max_population,tmax,nprints,division_mode):
         #plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
-    ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:5]))
-    division_mode = sys.argv[5]
+    ncells, max_population, tmax, nprints, run_number = list(map(int,sys.argv[1:6]))
+    division_mode = sys.argv[6]
     #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
-    print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints} - division_mode = {division_mode}")
+    print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
     modalita = ['indipendente','unito']
     if division_mode in modalita:
-        main(ncells,max_population,tmax,nprints,division_mode)
+        output_path = f'./output/run{run_number}/'
+        main(ncells,max_population,tmax,nprints,division_mode,output_path)
     else:
         print(f"L'input 'division_mode' accetta solo i valori: {modalita}")
