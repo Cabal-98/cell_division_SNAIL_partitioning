@@ -2,7 +2,7 @@ from cell_noise_LIBRERIE import *
 from cell_noise_COSTANTI import *
 from cell_noise_FUNZIONI import *
 
-def main(ncells,max_population,tmax,nprints):
+def main(ncells,max_population,tmax,nprints,division_mode):
     #CELLULA
     cells = defaultdict(list)
     #Stato: SNAIL=0, mu200=1, mZ=2, Z=3, tnext=4, t0=5 dove t0 è il tempo di ultima divisione e tnext il tempo della prossima
@@ -139,7 +139,7 @@ def main(ncells,max_population,tmax,nprints):
         #plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
-    ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:4]))
+    ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:5]))
     division_mode = sys.argv[5]
     #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
     print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints} - division_mode = {division_mode}")
