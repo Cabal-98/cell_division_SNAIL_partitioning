@@ -146,6 +146,8 @@ if __name__ == "__main__":
     modalita = ['indipendente','unito']
     if division_mode in modalita:
         output_path = f'./output/run{run_number}/'
+        if not os.path.exists(output_path):
+            os.makedirs(output_path)
         main(ncells,max_population,tmax,nprints,division_mode,output_path)
     else:
         print(f"L'input 'division_mode' accetta solo i valori: {modalita}")
