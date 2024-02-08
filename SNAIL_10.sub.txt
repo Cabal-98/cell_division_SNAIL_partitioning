@@ -1,0 +1,16 @@
+universe = docker
+docker_image = requiem98/geolocdock:v01
+executable = /bin/python3
+arguments = /home/amedeo_ranaldi/cell_division_SNAIL_partitioning/cell_noise_MAIN.py 50 5000 1500 15 10 indipendente
+output = /home/amedeo_ranaldi/SNAIL_10/CondorLogs/out.$(ClusterId).$(ProcId)
+error = /home/amedeo_ranaldi/SNAIL_10/CondorLogs/err.$(ClusterId).$(ProcId)
+log = /home/amedeo_ranaldi/SNAIL_10/CondorLogs/log.$(ClusterId).$(ProcId)
+request_cpus = 1
+request_gpus = 0
+request_memory = 32G
+request_disk = 50G
++MountData1=FALSE
++MountData2=FALSE
++MountHomes=TRUE
+queue 1
+
