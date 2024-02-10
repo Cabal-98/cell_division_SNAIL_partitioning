@@ -37,11 +37,11 @@ dt = 0.1
 
 #COSTANTI DI STUDIO PARTIZIONE
 #valori per test
-p_vector = [0.40]
-var_vector = [0.05]
+#p_vector = [0.40]
+#var_vector = [0.05]
 #valori da usare
-#p_vector = [0.25,0.30,0.35,0.40,0.45,0.50]
-#var_vector = [0.005,0.01,0.02,0.05,0.1]
+p_vector = [0.25,0.30,0.35,0.40,0.45,0.50]
+var_vector = [0.005,0.01,0.02,0.05,0.1]
 
 #COSTANTI DEL RUMORE
 #Rumore duplicazione
