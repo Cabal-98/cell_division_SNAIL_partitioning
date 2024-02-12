@@ -139,7 +139,8 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
         #plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
-    ncells, max_population, tmax, nprints, run_number = list(map(int,sys.argv[1:6]))
+    ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:6]))
+    run_number = sys.argv[5]
     division_mode = sys.argv[6]
     #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
     print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
