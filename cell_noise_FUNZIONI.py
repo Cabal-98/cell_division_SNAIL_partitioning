@@ -196,12 +196,12 @@ def cell_division(cell,p,var,division_mode):
         cell1[1],cell2[1] = duplicate_2(cell[1],p,var,'mu200',r[0])
         cell1[2],cell2[2] = duplicate_2(cell[2],p,var,'mZEB',r[0])
         cell1[3],cell2[3] = duplicate_2(cell[3],p,var,'ZEB',r[0])
-    elif division_mode == 'nucleosimmetrico':
+    elif division_mode == 'nsym':
         cell1[0],cell2[0] = duplicate(cell[0],0.5,var,'SNAIL')
         cell1[1],cell2[1] = duplicate(cell[1],0.5,var,'mu200')
         cell1[2],cell2[2] = duplicate(cell[2],p,var,'mZEB')
         cell1[3],cell2[3] = duplicate(cell[3],p,var,'ZEB')
-    elif division_mode == 'citoplasmasimmetrico'
+    elif division_mode == 'csym'
         cell1[0],cell2[0] = duplicate(cell[0],p,var,'SNAIL')
         cell1[1],cell2[1] = duplicate(cell[1],p,var,'mu200')
         cell1[2],cell2[2] = duplicate(cell[2],0.5,var,'mZEB')
