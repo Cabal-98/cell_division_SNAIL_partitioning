@@ -42,7 +42,7 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
     pv_comb = np.array(np.meshgrid(p_vector,var_vector)).T.reshape(-1,2)
     
     #EVOLUZIONE E DIVISIONI
-    for p, var in pv_comb:
+    for p, var in tqdm(pv_comb):
         print(tprint_width)
         print("\n")
         print(p, var)
@@ -50,10 +50,10 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
         t=0
         i=ncells #aggiungere +1 se si sposta l'if e quindi l'aggiornamento dell'indice avviene dopo
 
-        pbar = tqdm(total = tmax)
+        #pbar = tqdm(total = tmax)
         
         while t < tmax:
-            pbar.update(tstep)
+            #pbar.update(tstep)
             t_check,j=checktimes(cells)
             while t_check < t:
                 #print(t_check, t)
@@ -143,7 +143,7 @@ if __name__ == "__main__":
     division_mode = sys.argv[6]
     #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
     print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
-    modalita = ['indipendente','unito']
+    modalita = ['indipendente','unito','disaccoppiato']
     if division_mode in modalita:
         output_path = f'./output/run{run_number}/'
         if not os.path.exists(output_path):
