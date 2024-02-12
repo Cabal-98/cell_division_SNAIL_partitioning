@@ -201,7 +201,7 @@ def cell_division(cell,p,var,division_mode):
         cell1[1],cell2[1] = duplicate(cell[1],0.5,var,'mu200')
         cell1[2],cell2[2] = duplicate(cell[2],p,var,'mZEB')
         cell1[3],cell2[3] = duplicate(cell[3],p,var,'ZEB')
-    elif division_mode == 'csym'
+    elif division_mode == 'csym':
         cell1[0],cell2[0] = duplicate(cell[0],p,var,'SNAIL')
         cell1[1],cell2[1] = duplicate(cell[1],p,var,'mu200')
         cell1[2],cell2[2] = duplicate(cell[2],0.5,var,'mZEB')
