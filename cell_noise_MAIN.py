@@ -143,7 +143,7 @@ if __name__ == "__main__":
     division_mode = sys.argv[6]
     #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
     print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
-    modalita = ['indipendente','unito','disaccoppiato']
+    modalita = ['indipendente','unito','nsym','csym']
     if division_mode in modalita:
         output_path = f'./output/run{run_number}/'
         if not os.path.exists(output_path):
