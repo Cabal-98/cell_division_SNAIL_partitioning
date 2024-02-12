@@ -87,7 +87,7 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
                 mes_frac.append(t_fractions[2])
             t+=tstep
 
-        pbar.close()
+        #pbar.close()
         
         for w in range(len(cells.keys())):
             cells[f"cell{w+1}"] = np.copy(simulazione(cells[f"cell{w+1}"],-1))
