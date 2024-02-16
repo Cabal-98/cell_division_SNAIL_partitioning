@@ -183,7 +183,7 @@ def duplicate_2(a,p,var,index,r):
 def cell_division(cell,p,var,division_mode):
     cell1=np.array([0,0,0,0,0,0])
     cell2=np.array([0,0,0,0,0,0])
-    if division_mode == 'indipendente':
+    if division_mode == 'indipendente' or division_mode == 'timetest':
         cell1[0],cell2[0] = duplicate(cell[0],p,var,'SNAIL')
         cell1[1],cell2[1] = duplicate(cell[1],p,var,'mu200')
         cell1[2],cell2[2] = duplicate(cell[2],p,var,'mZEB')
