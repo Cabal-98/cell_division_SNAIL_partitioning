@@ -40,7 +40,7 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
 
     #Crea un unico vettore da cui estrarre p e var cosi da rimuovere un ciclo
     pv_comb = np.array(np.meshgrid(p_vector,var_vector)).T.reshape(-1,2)
-    if division_mode == 'timetest'
+    if division_mode == 'timetest':
         pv_comb = np.array([[0.40,0.05]])
     #EVOLUZIONE E DIVISIONI
     for p, var in pv_comb:
