@@ -1,7 +1,7 @@
 universe = docker
 docker_image = requiem98/geolocdock:v01
 executable = /bin/python3
-arguments = /home/amedeo_ranaldi/cell_division_SNAIL_partitioning/cell_noise_MAIN.py 100 25000 2000 40 00 indipendente
+arguments = /home/amedeo_ranaldi/cell_division_SNAIL_partitioning/cell_noise_MAIN.py 100 25000 2000 40 00 timetest
 output = /home/amedeo_ranaldi/SNAIL_00/CondorLogs/out.$(ClusterId).$(ProcId)
 error = /home/amedeo_ranaldi/SNAIL_00/CondorLogs/err.$(ClusterId).$(ProcId)
 log = /home/amedeo_ranaldi/SNAIL_00/CondorLogs/log.$(ClusterId).$(ProcId)
