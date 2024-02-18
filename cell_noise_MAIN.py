@@ -145,7 +145,8 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
         #plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
-    ncells, max_population, tmax, nprints, p_input, var_input = list(map(int,sys.argv[1:7]))
+    ncells, max_population, tmax, nprints, p_input, var_input = list(map(int,sys.argv[1:5]))
+    p_input, var_input = list(map(float,sys.argv[6:7]))
     run_number = sys.argv[7]
     division_mode = sys.argv[8]
     output_folder = sys.argv[9]
