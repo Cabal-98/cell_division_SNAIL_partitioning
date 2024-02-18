@@ -146,15 +146,16 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path,p_input,va
 
 if __name__ == "__main__":
     ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:5]))
-    p_input, var_input = list(map(float,sys.argv[6:7]))
+    p_input, var_input = list(map(float,sys.argv[5:7]))
     run_number = sys.argv[7]
     division_mode = sys.argv[8]
     output_folder = sys.argv[9]
-    print(f"Parametri inseriti: ncells = {ncells} - nmax = {max_population} - tmax = {tmax} - nprints = {nprints} - p = {p_input} - var = {var_input}")
-    print(f"Parametri inseriti: ncells = {ncells} - max_pop = {max_population} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
+    print(f"Parametri inseriti: ncells = {ncells} - nmax = {max_population} - max_population = {max_population} - tmax = {tmax} - nprints = {nprints} - p = {p_input} - var = {var_input} - run number = {run_number} - division_mode = {division_mode}")
+    #print(f"Parametri inseriti: ncells = {ncells} - max_pop = {max_population} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
     modalita = ['indipendente','unito','nsym','csym','timetest']
     if division_mode in modalita:
         output_path = output_folder + f'./output/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}'
+        print(output_path)
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         main(ncells,max_population,tmax,nprints,division_mode,output_path,p_input,var_input)
