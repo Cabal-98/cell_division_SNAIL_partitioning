@@ -40,8 +40,8 @@ dt = 0.1
 #p_vector = [0.40]
 #var_vector = [0.05]
 #valori da usare
-p_vector = [0.25,0.30,0.35,0.40,0.45,0.50]
-var_vector = [0.005,0.01,0.02,0.05,0.1]
+p_vector = [0.25,0.30,0.325,0.35,0.375,0.40,0.425,0.45,0.475,0.50]
+var_vector = [0.005,0.007,0.009,0.01,0.02,0.035,0.05,0.07,0.09,0.1]
 
 #COSTANTI DEL RUMORE
 #Rumore duplicazione
