@@ -154,7 +154,7 @@ if __name__ == "__main__":
     #print(f"Parametri inseriti: ncells = {ncells} - max_pop = {max_population} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
     modalita = ['indipendente','unito','nsym','csym','timetest']
     if division_mode in modalita:
-        output_path = output_folder + f'./output/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}'
+        output_path = output_folder + f'/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}'
         print(output_path)
         if not os.path.exists(output_path):
             os.makedirs(output_path)
