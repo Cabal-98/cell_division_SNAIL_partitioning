@@ -43,7 +43,7 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
     if division_mode == 'timetest':
         pv_comb = np.array([[0.40,0.05]])
     #EVOLUZIONE E DIVISIONI
-    for p, var in pv_comb:
+    for p, var in tqdm(pv_comb):
         print(tprint_width)
         print("\n")
         print(p, var)
@@ -51,10 +51,10 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
         t=0
         i=ncells #aggiungere +1 se si sposta l'if e quindi l'aggiornamento dell'indice avviene dopo
 
-        pbar = tqdm(total = tmax)
+        #pbar = tqdm(total = tmax)
         
         while t < tmax:
-            pbar.update(tstep)
+            #pbar.update(tstep)
             t_check,j=checktimes(cells)
             while t_check < t:
                 #print(t_check, t)
@@ -88,7 +88,7 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
                 mes_frac.append(t_fractions[2])
             t+=tstep
 
-        pbar.close()
+        #pbar.close()
         
         for w in range(len(cells.keys())):
             cells[f"cell{w+1}"] = np.copy(simulazione(cells[f"cell{w+1}"],-1))
