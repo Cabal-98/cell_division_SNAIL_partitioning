@@ -42,6 +42,8 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
     pv_comb = np.array(np.meshgrid(p_vector,var_vector)).T.reshape(-1,2)
     if division_mode == 'timetest':
         pv_comb = np.array([[0.40,0.05]])
+    if p_input or var_input != 0:
+        pv_comb = np.array([[p_input,var_input]])
     #EVOLUZIONE E DIVISIONI
     for p, var in tqdm(pv_comb):
         print(tprint_width)
@@ -140,14 +142,15 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
         #plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
-    ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:5]))
-    run_number = sys.argv[5]
-    division_mode = sys.argv[6]
-    #print(f"Parametri inseriti: ncells = {ncells} - tmax = {tmax} - nprints = {nprints}")
+    ncells, max_population, tmax, nprints, p_input, var_input = list(map(int,sys.argv[1:7]))
+    run_number = sys.argv[7]
+    division_mode = sys.argv[8]
+    output_folder = sys.argv[9]
+    print(f"Parametri inseriti: ncells = {ncells} - nmax = {max_population} - tmax = {tmax} - nprints = {nprints} - p = {p_input} - var = {var_input}")
     print(f"Parametri inseriti: ncells = {ncells} - max_pop = {max_population} - tmax = {tmax} - nprints = {nprints} - run_number = {run_number} - division_mode = {division_mode}")
     modalita = ['indipendente','unito','nsym','csym','timetest']
     if division_mode in modalita:
-        output_path = f'./output/run{run_number}/'
+        output_path = output_folder + f'./output/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}'
         if not os.path.exists(output_path):
             os.makedirs(output_path)
         main(ncells,max_population,tmax,nprints,division_mode,output_path)
