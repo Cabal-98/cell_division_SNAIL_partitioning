@@ -2,7 +2,7 @@ from cell_noise_LIBRERIE import *
 from cell_noise_COSTANTI import *
 from cell_noise_FUNZIONI import *
 
-def main(ncells,max_population,tmax,nprints,division_mode,output_path):
+def main(ncells,max_population,tmax,nprints,division_mode,output_path,p_input,var_input):
     #CELLULA
     cells = defaultdict(list)
     #Stato: SNAIL=0, mu200=1, mZ=2, Z=3, tnext=4, t0=5 dove t0 è il tempo di ultima divisione e tnext il tempo della prossima
@@ -145,7 +145,7 @@ def main(ncells,max_population,tmax,nprints,division_mode,output_path):
         #plt.savefig("./output/plot.png",dpi=1200)
 
 if __name__ == "__main__":
-    ncells, max_population, tmax, nprints, p_input, var_input = list(map(int,sys.argv[1:5]))
+    ncells, max_population, tmax, nprints = list(map(int,sys.argv[1:5]))
     p_input, var_input = list(map(float,sys.argv[6:7]))
     run_number = sys.argv[7]
     division_mode = sys.argv[8]
@@ -157,6 +157,6 @@ if __name__ == "__main__":
         output_path = output_folder + f'./output/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}'
         if not os.path.exists(output_path):
             os.makedirs(output_path)
-        main(ncells,max_population,tmax,nprints,division_mode,output_path)
+        main(ncells,max_population,tmax,nprints,division_mode,output_path,p_input,var_input)
     else:
         print(f"L'input 'division_mode' accetta solo i valori: {modalita}")
