@@ -155,7 +155,7 @@ if __name__ == "__main__":
     modalita = ['indipendente','unito','nsym','csym','timetest']
     if division_mode in modalita:
         if output_folder == '0':
-            output_path = f'/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}' 
+            output_path = f'./output/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}' 
         else:
             output_path = output_folder + f'/run{run_number}/sim_p_{str(p_input).replace(".","")}_sigma_{str(var_input).replace(".","")}'
         print(output_path)
